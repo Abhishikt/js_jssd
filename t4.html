@@ -20,6 +20,12 @@
 L.mapbox.accessToken = 'pk.eyJ1IjoicmVzdWx0c3RyYWNrIiwiYSI6ImNpd2l4N2k4bjAwMGcydHFwZWRtb2ZnZ3oifQ.m2VIg_XkneWAXssAz6d-Cg';
 var map = L.mapbox.map('map', 'mapbox.streets')
      .setView([22.14980, 79.08060], 4);
+ var circle = L.circle([22.508, 97.11], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+}).addTo(mymap);
 </script>
 
 </body>
