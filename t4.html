@@ -24,15 +24,10 @@
     var southWest = L.latLng(7.319, 61.523),
         northEast = L.latLng(36.774, 100.635),
         bounds = L.latLngBounds(southWest, northEast);
-        var latlngs = [
-  [ // first polygon
-    [[37, -109.05],[41, -109.03],[41, -102.05],[37, -102.04]], // outer ring
-    [[37.29, -108.58],[40.71, -108.58],[40.71, -102.50],[37.29, -102.50]] // hole
-  ],
-  [ // second polygon
-    [[41, -111.03],[45, -111.04],[45, -104.05],[41, -104.05]]
-  ]
-];
+       var latlngs = [[37, -109.05],[41, -109.03],[41, -102.05],[37, -102.04]];
+var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
+// zoom the map to the polygon
+map.fitBounds(polygon.getBounds());
         
     L.mapbox.accessToken = 'pk.eyJ1IjoicmVzdWx0c3RyYWNrIiwiYSI6ImNpd2l4N2k4bjAwMGcydHFwZWRtb2ZnZ3oifQ.m2VIg_XkneWAXssAz6d-Cg';
    var indiaMap = L.mapbox.tileLayer('openstreetmap.1b68f018'),
