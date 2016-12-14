@@ -33,10 +33,12 @@
 
 	
 
-	L.circle([22.508, 79.11], 400, {
+	L.circle([22.508, 79.11],
+		 {
 		color: 'red',
 		fillColor: '#f03',
 		fillOpacity: 500
+		radius: 50000
 	}).addTo(mymap).bindPopup("I am a circle.");
 
 	L.polygon([
