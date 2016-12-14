@@ -21,9 +21,11 @@
 </section>
 
 <script>
-    var southWest = L.latLng(7.319, 61.523),
-        northEast = L.latLng(36.774, 100.635),
-        bounds = L.latLngBounds(southWest, northEast);
+      };
+  var latlngs = [[22,79.05],[37, -102.04]];
+var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
+// zoom the map to the polygon
+map.fitBounds(polygon.getBounds());
       
         
     L.mapbox.accessToken = 'pk.eyJ1IjoicmVzdWx0c3RyYWNrIiwiYSI6ImNpd2l4N2k4bjAwMGcydHFwZWRtb2ZnZ3oifQ.m2VIg_XkneWAXssAz6d-Cg';
@@ -39,11 +41,7 @@
         "Railway Map": railwayMap,
         "Bhuvan Satellite": bhuvanSatellite,
         "OpenStreetMap India": indiaMap
-    };
-  var latlngs = [[22,79.05],[37, -102.04]];
-var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
-// zoom the map to the polygon
-map.fitBounds(polygon.getBounds());
+ 
     var map = L.map('map', {
             layers: indiaMap
         }, {
