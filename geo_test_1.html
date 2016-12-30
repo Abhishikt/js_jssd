@@ -1,9 +1,7 @@
 <script type="text/javascript">
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position){
-    var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude;
-    var accuracy = position.coords.accuracy;
+    
     
     var latlon = position.coords.latitude + "," + position.coords.longitude;
      x.innerHTML = "Latitude: " + position.coords.latitude +
@@ -13,14 +11,7 @@ if (navigator.geolocation) {
 
     
 
-        
-
-
-    },function error(msg){alert('Please enable your GPS position future.');  
-
-  }, {maximumAge:600000, timeout:5000, enableHighAccuracy: true});
-    
-}
+      
     else {
     alert("Geolocation API is not supported in your browser.");
 }
