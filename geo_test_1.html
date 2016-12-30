@@ -4,30 +4,22 @@ if (navigator.geolocation) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
     var accuracy = position.coords.accuracy;
-    var coords = new google.maps.LatLng(latitude, longitude);
     
-
-     var capa = document.getElementById("capa");
-     capa.innerHTML = "latitud: " + latitude + " longitud: " + "   aquesta es la precisio en metres  :  " + accuracy;  
-
-        map = new google.maps.Map(
-            document.getElementById("mapContainer"), mapOptions
-            );
-        var marker = new google.maps.Marker({
-                position: coords,
-                map: map,
-                title: "ok"
-        });
-
-
-    },function error(msg){alert('Please enable your GPS position future.');  
-
-  }, {maximumAge:600000, timeout:5000, enableHighAccuracy: true});
     var latlon = position.coords.latitude + "," + position.coords.longitude;
      x.innerHTML = "Latitude: " + position.coords.latitude +
     "<br>Longitude: " + position.coords.longitude+"<br> accuracy : "+position.coords.accuracy+"<br> altitude: "
      +position.coords.attitude+"<br> altitude accuracy: "+position.coords.altitudeAccuracy+"<br> heading: "+position.coords.heading+
      "<br> speed: "+position.coords.heading+"<br>timestamp "+position.timestamp;
+
+    
+
+        
+
+
+    },function error(msg){alert('Please enable your GPS position future.');  
+
+  }, {maximumAge:600000, timeout:5000, enableHighAccuracy: true});
+    
 }
     else {
     alert("Geolocation API is not supported in your browser.");
