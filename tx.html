@@ -62,6 +62,15 @@ map.on('load', function () {
         }
     });
 });
+        var map = L.map('map', {
+            layers: indiaMap
+        }, {
+            maxBounds: bounds,
+        })
+        .addControl(L.mapbox.geocoderControl('mapbox.places', {
+            autocomplete: true
+        }))
+        .setView([22.14980, 79.08060], 4);
 </script>
 
 </body>
