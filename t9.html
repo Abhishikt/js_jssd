@@ -1,1 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>India map </title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
+ <script src='https://api.tiles.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+<section class="map-container {{page.map}}">
+
+  <div id='map'></div>
+</span>
+</section>
+
+
+  <div id='map'></div>
+
+</section>
+
+<script>
+    // Lock to India bounds
+    var southWest = L.latLng(7.319, 61.523),
+        northEast = L.latLng(36.774, 100.635),
+        bounds = L.latLngBounds(southWest, northEast);
+    // Provide your access token
+    L.mapbox.accessToken = 'pk.eyJ1Ijoib3BlbnN0cmVldG1hcCIsImEiOiJhNVlHd29ZIn0.ti6wATGDWOmCnCYen-Ip7Q';
+    // Definte tile urls of each layer
+    var indiaMap = L.mapbox.tileLayer('openstreetmap.1b68f018'),
+        bhuvanSatellite = L.tileLayer('http://tile1.nrsc.gov.in/tilecache/tilecache.py/1.0.0/bhuvan_imagery2/{z}/{x}/{y}.jepg', {
+            attribution: 'NRSC/ISRO'
+        }),
+        postalMap = L.mapbox.tileLayer('planemad.9acc2036'),
+        // truemarbleSatellite = L.mapbox.tileLayer('planemad.e76fee83'),
+        highwaysMap = L.mapbox.tileLayer('planemad.66359ac0'),
+        connectivityGraph = L.mapbox.tileLayer('planemad.5504651b'),
+        railwayMap = L.mapbox.tileLayer('planemad.e5dd1290');
+    var baseLayers = {
+        "Railway Map": railwayMap,
+        "Bhuvan Satellite": bhuvanSatellite,
+        // "NASA Satellite": truemarbleSatellite,
+        "india map": indiaMap
+    };
+    var overlayMaps = {
+        "Highway": highwaysMap,
+        "Postal Codes": postalMap,
+        "Connectivity": connectivityGraph
+    };
+    // Create a map in the div #map
+    var map = L.map('map', {
+            layers: indiaMap
+        }, {
+            maxBounds: bounds,
+        })
+        .addControl(L.mapbox.geocoderControl('mapbox.places', {
+            autocomplete: true
+        }))
+        .setView([22.14980, 79.08060], 4);
+    map.on('load', function () {
+    map.addSource("route", {
+        "type": "geojson",
+        "data": {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [84.48369693756104, 24.83381888486939],
+                  [75.48348236083984, 24.83317489144141],
+                    [76.48339653015138, 23.83270036637107],
+                    
+                    [77.49378204345702, 28.83368330777276]
+                ]
+            }
+        }
+    });
+
+    map.addLayer({
+        "id": "route",
+        "type": "line",
+        "source": "route",
+        "layout": {
+            "line-join": "round",
+            "line-cap": "round"
+        },
+        "paint": {
+            "line-color": "#888",
+            "line-width": 8
+        }
+    });
+});
+</script>
+
+</body>
+</html>
