@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>India map </title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+ <script src='https://api.tiles.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
+   
+<script src='https://api.mapbox.com/styles/v1/resultstrack/ciwnfb5y5004s2qqyw83ti7yp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVzdWx0c3RyYWNrIiwiYSI6ImNpd2l4N2k4bjAwMGcydHFwZWRtb2ZnZ3oifQ.m2VIg_XkneWAXssAz6d-Cg'></script>
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+<section class="map-container {{page.map}}">
+
+  <div id='map'></div>
+</span>
+</section>
+
+<script>
+    var southWest = L.latLng(7.319, 61.523),
+        northEast = L.latLng(36.774, 100.635),
+        bounds = L.latLngBounds(southWest, northEast);
+    L.mapbox.accessToken = 'pk.eyJ1IjoicmVzdWx0c3RyYWNrIiwiYSI6ImNpd2l4N2k4bjAwMGcydHFwZWRtb2ZnZ3oifQ.m2VIg_XkneWAXssAz6d-Cg';
+   var indiaMap = L.mapbox.tileLayer('openstreetmap.1b68f018'),
+        
+        }),
+        
+    var baseLayers = {
+        
+        "OpenStreetMap India": indiaMap
+    };
+    var map = L.map('map', {
+            layers: indiaMap
+        }, {
+            maxBounds: bounds,
+        })
+        .addControl(L.mapbox.geocoderControl('mapbox.places', {
+            autocomplete: true
+        }))
+        .setView([22.14980, 79.08060], 4);
+    L.hash(map);
+    L.control.layers(baseLayers, overlayMaps, {
+        position: 'topleft',
+    }).addTo(map);
+    map.on('load', function () {
+    map.addSource("points", {
+        "type": "geojson",
+        "data": {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [85.03238901390978, 25.913188059745586]
+                },
+                "properties": {
+                    "title": "test_1",
+                    "icon": "monument"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [86.414, 26.776]
+                },
+                "properties": {
+                    "title": "test_2",
+                    "icon": "harbor"
+                }
+            }]
+        }
+    });
+    map.addLayer({
+        "id": "points",
+        "type": "symbol",
+        "source": "points",
+        "layout": {
+            "icon-image": "{icon}-15",
+            "text-field": "{title}",
+            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-offset": [0, 0.6],
+            "text-anchor": "top"
+        }
+    });
+});
+</script>
+</body>
+</html>
