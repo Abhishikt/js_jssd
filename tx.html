@@ -18,7 +18,7 @@
         northEast = L.latLng(36.774, 100.635),
         bounds = L.latLngBounds(southWest, northEast);
     // Provide your access token
-    L.mapbox.accessToken = 'pk.eyJ1Ijoib3BlbnN0cmVldG1hcCIsImEiOiJhNVlHd29ZIn0.ti6wATGDWOmCnCYen-Ip7Q';
+    L.mapbox.accessToken = 'pk.eyJ1IjoicmVzdWx0c3RyYWNrIiwiYSI6ImNpd2l4N2k4bjAwMGcydHFwZWRtb2ZnZ3oifQ.m2VIg_XkneWAXssAz6d-Cg';
  var map = L.map('map', {
             layers: indiaMap
         }, {
@@ -27,7 +27,7 @@
         .addControl(L.mapbox.geocoderControl('mapbox.places', {
             autocomplete: true
         }))
-        .setView([22.14980, 79.08060], 4);
+        .setView([23.14980, 79.08060], 4);
 map.on('load', function () {
     map.addSource("points", {
         "type": "geojson",
