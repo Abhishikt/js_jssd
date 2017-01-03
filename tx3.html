@@ -1,3 +1,31 @@
+
+Skip to content
+This repository
+
+    Pull requests
+    Issues
+    Gist
+
+    @siddht1
+
+1
+0
+
+    2
+
+radiotunes/js_jssd
+Code
+Issues 0
+Pull requests 1
+Projects 0
+Wiki
+Pulse
+Graphs
+Settings
+js_jssd/t6.html
+e930ed5 4 days ago
+@siddht1 siddht1 Rename t2.html to t6.html
+66 lines (53 sloc) 1.93 KB
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +54,18 @@
         bounds = L.latLngBounds(southWest, northEast);
     L.mapbox.accessToken = 'pk.eyJ1Ijoib3BlbnN0cmVldG1hcCIsImEiOiJhNVlHd29ZIn0.ti6wATGDWOmCnCYen-Ip7Q';
    var indiaMap = L.mapbox.tileLayer('openstreetmap.1b68f018'),
-        
+        bhuvanSatellite = L.tileLayer('http://tile1.nrsc.gov.in/tilecache/tilecache.py/1.0.0/bhuvan_imagery2/{z}/{x}/{y}.jepg', {
+            attribution: 'NRSC/ISRO'
+        }),
+        postalMap = L.mapbox.tileLayer('planemad.9acc2036'),
+        highwaysMap = L.mapbox.tileLayer('planemad.66359ac0'),
+        connectivityGraph = L.mapbox.tileLayer('planemad.5504651b'),
+        railwayMap = L.mapbox.tileLayer('planemad.e5dd1290');
+    var baseLayers = {
+        "Railway Map": railwayMap,
+        "Bhuvan Satellite": bhuvanSatellite,
+        "OpenStreetMap India": indiaMap
+    };
     var map = L.map('map', {
             layers: indiaMap
         }, {
@@ -36,7 +75,15 @@
             autocomplete: true
         }))
         .setView([22.14980, 79.08060], 4);
-    
+    L.hash(map);
+    L.control.layers(baseLayers, overlayMaps, {
+        position: 'topleft',
+    }).addTo(map);
 </script>
 </body>
 </html>
+
+    Contact GitHub API Training Shop Blog About 
+
+    © 2017 GitHub, Inc. Terms Privacy Security Status Help 
+
